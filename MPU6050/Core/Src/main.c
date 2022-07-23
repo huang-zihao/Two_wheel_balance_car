@@ -21,9 +21,7 @@
 #include "i2c.h"
 #include "usart.h"
 #include "gpio.h"
-#include "mpu6050.h"
-#include "inv_mpu.h"
-#include "inv_mpu_dmp_motion_driver.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -96,7 +94,7 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 	while(MPU_Init());					//初始化MPU6050
-	printf("%s\r\n","jeck666");
+	printf("%s\r\n","zihao");
 	while(mpu_dmp_init())
 	{
 		delay_ms(200);
@@ -118,9 +116,11 @@ int main(void)
 			temp=MPU_Get_Temperature();								//得到温度值
 			MPU_Get_Accelerometer(&aacx,&aacy,&aacz);	//得到加速度传感器数据
 			MPU_Get_Gyroscope(&gyrox,&gyroy,&gyroz);	//得到陀螺仪数据
-			printf("三轴角度：%f-%f-%f\r\n",pitch,roll,yaw);
-			printf("三轴加速度：%d-%d-%d\r\n",aacx,aacy,aacz);
-			printf("三轴角角度：%d-%d-%d\r\n",gyrox,gyroy,gyroz);
+			printf("三轴角度(deg)：%.1f  %.1f  %.1f\r\n",pitch,roll,yaw);
+			printf("三轴加速度(m/s^2)：%.1fg  %.1fg  %.1fg\r\n",(float)aacx/(0xffff/4),(float)aacy/(0xffff/4),(float)aacz/(0xffff/4));
+	 		printf("三轴角角度(deg/s)：%.1f  %.1f  %.1f\r\n",(float)gyrox/(0xffff/500),(float)gyroy/(0xffff/500),(float)gyroz/(0xffff/500));
+			//			printf("三轴加速度：%d   %d  %d\r\n",aacx,aacy,aacz);
+//			printf("三轴角角度：%d  %d  %d\r\n",gyrox,gyroy,gyroz);
 		}
 		delay_ms(100);
 
@@ -140,10 +140,13 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -152,12 +155,12 @@ void SystemClock_Config(void)
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     Error_Handler();
   }

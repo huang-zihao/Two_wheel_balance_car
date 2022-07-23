@@ -19,7 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "usart.h"
-#include <stdio.h>
+
 /* USER CODE BEGIN 0 */
 #define USE_PRINT
 #ifdef USE_PRINT
@@ -47,7 +47,6 @@ int fputc(int ch, FILE *stream)
 }
 #endif
 /* USER CODE END 0 */
-
 
 UART_HandleTypeDef huart1;
 
