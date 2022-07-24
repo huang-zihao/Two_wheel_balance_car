@@ -16,9 +16,12 @@
 
 
 #AB向无刷直流电机
+AB向编码器：
 
 ![image](https://user-images.githubusercontent.com/109507018/180652436-93de5264-e845-45ea-97a9-416221dedffb.png)
 
+无刷直流驱动方式：
+直接pwm单向输入即可
 
 三、算法
 #控制算法（模糊、神经网络
