@@ -101,29 +101,33 @@ int main(void)
 		printf("%s\r\n","Mpu6050 Init Wrong!");
 	}
 	printf("%s\r\n","Mpu6050 Init OK!");
+	
+	MPU_Get_Gyroscope_Mean(&gyrox,&gyroy,&gyroz);	//得到陀螺仪数据
+	MPU_Get_Accelerometer_Mean(&aacx,&aacy,&aacz);	
+	
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
+  while(1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
 		if(mpu_dmp_get_data(&pitch,&roll,&yaw)==0)
 		{
-			temp=MPU_Get_Temperature();								//得到温度值
-			MPU_Get_Accelerometer(&aacx,&aacy,&aacz);	//得到加速度传感器数据
-			MPU_Get_Gyroscope(&gyrox,&gyroy,&gyroz);	//得到陀螺仪数据
-			printf("三轴角度(deg)：%.1f  %.1f  %.1f\r\n",pitch,roll,yaw);
-			printf("三轴加速度(m/s^2)：%.1fg  %.1fg  %.1fg\r\n",(float)aacx/(0xffff/4),(float)aacy/(0xffff/4),(float)aacz/(0xffff/4));
-	 		printf("三轴角角度(deg/s)：%.1f  %.1f  %.1f\r\n",(float)gyrox/(0xffff/500),(float)gyroy/(0xffff/500),(float)gyroz/(0xffff/500));
-			//			printf("三轴加速度：%d   %d  %d\r\n",aacx,aacy,aacz);
-//			printf("三轴角角度：%d  %d  %d\r\n",gyrox,gyroy,gyroz);
+				MPU_Get_Accelerometer(&aacx,&aacy,&aacz);	//得到加速度传感器数据
+				MPU_Get_Gyroscope(&gyrox,&gyroy,&gyroz);	//得到陀螺仪数据
+				printf("三轴角度(deg)：%.1f  %.1f  %.1f\r\n",pitch,roll,yaw);
+				printf("三轴加速度a(m/s^2)：%.3fg  %.3fg  %.3fg\r\n",(float)aacx/(0xffff/4),(float)aacy/(0xffff/4),(float)aacz/(0xffff/4));	
+				printf("三轴角速度w(deg/s)：%.1f  %.1f  %.1f\r\n",(float)gyrox/(0xffff/500),(float)gyroy/(0xffff/500),(float)gyroz/(0xffff/500));
+
 		}
 		delay_ms(100);
 
+		
   }
   /* USER CODE END 3 */
 }

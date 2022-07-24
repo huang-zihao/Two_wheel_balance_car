@@ -2,7 +2,15 @@
 #include "./delay.h"
 
 #include "i2c.h"
+struct OFFSET
+{
+	int ax,ay,az;
+	int gx,gy,gz;
+};
+struct OFFSET offset;
+int offset_temp[6]={0};
 
+#define CL_CNT 512
 //初始化MPU6050
 //返回值:0,成功
 //    其他,错误代码
@@ -99,8 +107,13 @@ u8 MPU_Get_Gyroscope(short *gx,short *gy,short *gz)
 		*gx=((u16)buf[0]<<8)|buf[1];  
 		*gy=((u16)buf[2]<<8)|buf[3];  
 		*gz=((u16)buf[4]<<8)|buf[5];
+		
+		
+		*gx=*gx-offset.gx;
+		*gy=*gy-offset.gy;
+		*gz=*gz-offset.gz;
 	} 	
-    return res;;
+    return res;
 }
 //得到加速度值(原始值)
 //gx,gy,gz:陀螺仪x,y,z轴的原始读数(带符号)
@@ -114,7 +127,12 @@ u8 MPU_Get_Accelerometer(short *ax,short *ay,short *az)
 	{
 		*ax=((u16)buf[0]<<8)|buf[1];  
 		*ay=((u16)buf[2]<<8)|buf[3];  
-		*az=((u16)buf[4]<<8)|buf[5];
+		*az=((u16)buf[4]<<8)|buf[5];  
+		
+		
+		*ax=*ax-offset.ax;
+		*ay=*ay-offset.ay;
+		*az=*az-offset.az;
 	} 	
   return res;;
 }
@@ -178,6 +196,42 @@ u8 MPU_Read_Byte(u8 reg)
 	else
 		return dat;
 	
+}
+
+
+
+void MPU_Get_Accelerometer_Mean(short *ax,short *ay,short *az)
+{
+	for(int i=0;i<CL_CNT;i++)
+	{
+		MPU_Get_Accelerometer(ax,ay,az);
+		HAL_Delay(1);
+		offset_temp[0]+=*ax;
+		offset_temp[1]+=*ay;
+		offset_temp[2]+=*az;
+	}
+	
+	
+	offset.ax = offset_temp[0]/CL_CNT;
+	offset.ay = offset_temp[1]/CL_CNT;
+	offset.az = offset_temp[2]/CL_CNT-(0xffff>>2);//补偿重力g
+
+}
+void MPU_Get_Gyroscope_Mean(short *gx,short *gy,short *gz)
+{
+	for(int i=0;i<CL_CNT;i++)
+		{
+			MPU_Get_Gyroscope(gx,gy,gz);
+			HAL_Delay(1);
+			offset_temp[3]+=*gx;
+			offset_temp[4]+=*gy;
+			offset_temp[5]+=*gz;
+		}
+		
+	offset.gx = offset_temp[3]/CL_CNT;
+	offset.gy = offset_temp[4]/CL_CNT;
+	offset.gz = offset_temp[5]/CL_CNT;
+		
 }
 
 

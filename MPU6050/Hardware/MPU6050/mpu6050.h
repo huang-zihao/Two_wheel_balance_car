@@ -100,6 +100,9 @@ short MPU_Get_Temperature(void);
 u8 MPU_Get_Gyroscope(short *gx,short *gy,short *gz);
 u8 MPU_Get_Accelerometer(short *ax,short *ay,short *az);
 
+
+void MPU_Get_Accelerometer_Mean(short *ax,short *ay,short *az);
+void MPU_Get_Gyroscope_Mean(short *gx,short *gy,short *gz);
 #endif
 
 
