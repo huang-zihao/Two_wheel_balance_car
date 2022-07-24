@@ -16,6 +16,8 @@
 
 
 #AB向无刷直流电机
+![image](https://user-images.githubusercontent.com/109507018/180652436-93de5264-e845-45ea-97a9-416221dedffb.png)
+
 
 三、算法
 #控制算法（模糊、神经网络
