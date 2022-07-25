@@ -1,0 +1,3 @@
+##定时器打开步骤
+1.点击选择TIM，然后选择如TIM1
+2.System Core ---- NVIC --- TIM1 update interrupt
