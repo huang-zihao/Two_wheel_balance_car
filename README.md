@@ -20,10 +20,15 @@ AB向编码器：
 
 ![image](https://user-images.githubusercontent.com/109507018/180652436-93de5264-e845-45ea-97a9-416221dedffb.png)
 
+![image](https://user-images.githubusercontent.com/109507018/181736093-f859dc3d-ed9d-44b9-9be0-bd6ca3801387.png)
+
+顺/逆：A(方波)B(高电平)或者B(方波)A(高电平)
+
+
 无刷直流驱动方式：
 直接pwm单向输入即可
-但是需要驱动、稳压
-
+但是需要驱动、稳压（至5V）
+烧坏了一个TB6612（只接VCC、GND就冒烟了，排除电源接反，好像是PWM口之前接高电平，可能是？）
 
 三、算法
 #控制算法（模糊、神经网络
