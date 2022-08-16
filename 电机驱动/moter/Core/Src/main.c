@@ -21,7 +21,7 @@
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
-
+#include "PID.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
@@ -49,7 +49,11 @@ MOTOR_FLAG motor_flag;
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-int i  =0;
+int time_unit  =0,j=0;
+int count=0;
+float AclValue;
+int uk=500;
+int a,b,a_tmp,b_tmp;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -75,7 +79,8 @@ int fputc(int ch,FILE* f)
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	
+
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -109,6 +114,20 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+		
+		
+		
+		a=HAL_GPIO_ReadPin(A_Input_GPIO_Port,A_Input_Pin);
+		b=HAL_GPIO_ReadPin(B_Input_GPIO_Port,B_Input_Pin);
+		
+		if((!a_tmp) && a)	
+		{
+			count++;
+		}
+		a_tmp=a;
+				
+
+		
   }
   /* USER CODE END 3 */
 }
@@ -158,8 +177,54 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if(htim->Instance == htim1.Instance)
 	{
-		motor_flag.AIN = motor_flag.AIN?0:1;
-		HAL_GPIO_WritePin(AIN1_GPIO_Port,AIN1_Pin,GPIO_PIN_RESET);
+		time_unit++;
+		j++;
+		if(j<= uk)
+		{
+			HAL_GPIO_WritePin(AIN1_GPIO_Port,AIN1_Pin,GPIO_PIN_SET);
+			HAL_GPIO_WritePin(AIN2_GPIO_Port,AIN2_Pin,GPIO_PIN_RESET);
+		}else 
+		{
+			HAL_GPIO_WritePin(AIN1_GPIO_Port,AIN1_Pin,GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(AIN2_GPIO_Port,AIN2_Pin,GPIO_PIN_RESET);
+		}
+		
+		j = (j>=2000)?0:j;
+//		
+//		if(time_unit>=100)
+//		{
+//			PID_simple();
+//			uk += (int)OutValue;
+//			uk = (uk>2000)?2000:uk;
+//			uk = (uk<0)?0:uk;
+//			count = 0;
+//			time_unit=0;
+//			//printf("AclValue: %.2f || OutValue:%.2f \r\n",AclValue,OutValue);
+//		}
+	
+		if(time_unit>=1000) 
+		{
+			AclValue = (count/13.0)*100;
+			
+			PID_simple();
+			uk += (int)OutValue;
+			uk = (uk>2000)?2000:uk;
+			uk = (uk<0)?0:uk;
+			printf("AclValue: %.2f || OutValue:%.2f \r\n",AclValue,OutValue);
+			time_unit=0;
+			count = 0;
+		}
+			
+		
+		
+//		if(time_unit>=100000)
+//		{
+//			time_unit=0;
+//			printf("uk: %d  || count : %d  \r\n",uk,count);
+
+//		}
+		
+
 //		if(motor_flag.AIN)
 //		{
 //			printf("up\r\n");

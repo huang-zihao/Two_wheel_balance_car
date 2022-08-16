@@ -36,6 +36,7 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+extern float OutValue;
 
 /* USER CODE END ET */
 
@@ -65,6 +66,10 @@ void Error_Handler(void);
 #define BIN1_GPIO_Port GPIOA
 #define BIN2_Pin GPIO_PIN_4
 #define BIN2_GPIO_Port GPIOA
+#define A_Input_Pin GPIO_PIN_8
+#define A_Input_GPIO_Port GPIOB
+#define B_Input_Pin GPIO_PIN_9
+#define B_Input_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

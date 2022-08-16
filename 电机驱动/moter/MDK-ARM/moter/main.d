@@ -31,4 +31,5 @@ moter\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 moter\main.o: ../Core/Inc/tim.h
 moter\main.o: ../Core/Inc/usart.h
 moter\main.o: ../Core/Inc/gpio.h
+moter\main.o: ../Core/Inc/PID.h
 moter\main.o: J:\Keil5\Core\ARM\ARMCC\Bin\..\include\stdio.h

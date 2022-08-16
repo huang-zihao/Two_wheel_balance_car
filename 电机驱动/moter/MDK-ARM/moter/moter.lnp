@@ -6,6 +6,7 @@
 "moter\usart.o"
 "moter\stm32f1xx_it.o"
 "moter\stm32f1xx_hal_msp.o"
+"moter\pid.o"
 "moter\stm32f1xx_hal_gpio_ex.o"
 "moter\stm32f1xx_hal_tim.o"
 "moter\stm32f1xx_hal_tim_ex.o"
