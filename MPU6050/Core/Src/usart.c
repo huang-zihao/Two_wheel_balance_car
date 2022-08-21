@@ -21,31 +21,7 @@
 #include "usart.h"
 
 /* USER CODE BEGIN 0 */
-#define USE_PRINT
-#ifdef USE_PRINT
-//编译器不使用MicroLib库
-#pragma import(__use_no_semihosting)
-//定义 _sys_exit() 避免使用半主机
-void _sys_exit(int x)
-{
-    x = x;
-}
-struct __FILE
-{
-    int handle;
-};
-FILE __stdout;
-//重映射fputc
-int fputc(int ch, FILE *stream)
-{
-    //判断串口是否发送完成 
-	  //不同芯片的串口标志位不一定相同，具体查手册
-    while((USART1->SR & 0X40) == 0);
-    //如果串口已经发送完成，发送下一个字符
-    USART1->DR = (uint8_t) ch;
-    return ch;
-}
-#endif
+
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart1;
