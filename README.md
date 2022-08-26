@@ -20,10 +20,14 @@ AB向编码器：
 
 ![image](https://user-images.githubusercontent.com/109507018/180652436-93de5264-e845-45ea-97a9-416221dedffb.png)
 
-![image](https://user-images.githubusercontent.com/109507018/181736093-f859dc3d-ed9d-44b9-9be0-bd6ca3801387.png)
 
-顺/逆：A(方波)B(高电平)或者B(方波)A(高电平)
+旋转方向：A上升沿，B低电平————顺时针转    A下降沿，B高电平————一次顺时针转结束
+          
+          A上升沿，B高电平————逆时针转    A下降沿，B低电平————一次逆时针转结束
+          
+即顺转（10——01），逆转（11——00）。
 
+计数方式，如果是顺转————计A上升沿个数
 
 无刷直流驱动方式：
 直接pwm单向输入即可
