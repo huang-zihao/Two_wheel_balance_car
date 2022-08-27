@@ -26,6 +26,8 @@ mpu6050\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
 mpu6050\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 mpu6050\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h
 mpu6050\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+mpu6050\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
+mpu6050\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 mpu6050\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 mpu6050\main.o: J:\Keil5\Core\ARM\ARMCC\Bin\..\include\stdio.h
 mpu6050\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/../../../Hardware/MPU6050/mpu6050.h
@@ -34,5 +36,8 @@ mpu6050\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/../../../Hardware/MPU6050/de
 mpu6050\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/../../../Hardware/MPU6050/eMPL/inv_mpu.h
 mpu6050\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/../../../Hardware/MPU6050/eMPL/inv_mpu_dmp_motion_driver.h
 mpu6050\main.o: ../Core/Inc/i2c.h
+mpu6050\main.o: ../Core/Inc/tim.h
 mpu6050\main.o: ../Core/Inc/usart.h
 mpu6050\main.o: ../Core/Inc/gpio.h
+mpu6050\main.o: ../Core/Inc/PID.h
+mpu6050\main.o: ../Core/Inc/Motor.h

@@ -62,7 +62,28 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define PWMA_Pin GPIO_PIN_0
+#define PWMA_GPIO_Port GPIOA
+#define AIN1_Pin GPIO_PIN_1
+#define AIN1_GPIO_Port GPIOA
+#define AIN2_Pin GPIO_PIN_2
+#define AIN2_GPIO_Port GPIOA
+#define BIN1_Pin GPIO_PIN_3
+#define BIN1_GPIO_Port GPIOA
+#define BIN2_Pin GPIO_PIN_4
+#define BIN2_GPIO_Port GPIOA
+#define PWMB_Pin GPIO_PIN_6
+#define PWMB_GPIO_Port GPIOA
+#define AOUT1_Pin GPIO_PIN_12
+#define AOUT1_GPIO_Port GPIOB
+#define BOUT1_Pin GPIO_PIN_13
+#define BOUT1_GPIO_Port GPIOB
+#define AOUT2_Pin GPIO_PIN_14
+#define AOUT2_GPIO_Port GPIOB
+#define BOUT2_Pin GPIO_PIN_15
+#define BOUT2_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
+void rotation(int tmp);
 
 /* USER CODE END Private defines */
 
