@@ -5,7 +5,7 @@
 datatype Upright(datatype Med,datatype theta,datatype gro)
 {
 
-		static float Upright_Kp=80,Upright_Kd=16;//36,24
+		static float Upright_Kp=90,Upright_Kd=16;//36,24
 		static datatype Upright_out=0;
     Upright_out = Upright_Kp*(theta-Med)+Upright_Kd*(gro);
 	

@@ -27,7 +27,20 @@ Project File Date:  08/29/2022
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'J:\Keil5\Core\ARM\ARMCC\Bin'
 Build target 'MPU6050'
-"MPU6050\MPU6050.axf" - 0 Error(s), 0 Warning(s).
+compiling PID.c...
+..\Core\Src\PID.c(22): warning:  #177-D: variable "velocity_Ki"  was declared but never referenced
+  	static float velocity_Kp=0.1,velocity_Ki=0.1;
+..\Core\Src\PID.c(23): warning:  #177-D: variable "velocity_S"  was declared but never referenced
+  	static int speed,velocity_S,low_out_last,low_out;
+..\Core\Src\PID.c(23): warning:  #177-D: variable "low_out_last"  was declared but never referenced
+  	static int speed,velocity_S,low_out_last,low_out;
+..\Core\Src\PID.c(23): warning:  #177-D: variable "low_out"  was declared but never referenced
+  	static int speed,velocity_S,low_out_last,low_out;
+..\Core\Src\PID.c: 4 warnings, 0 errors
+linking...
+Program Size: Code=24948 RO-data=5828 RW-data=188 ZI-data=1540  
+FromELF: creating hex file...
+"MPU6050\MPU6050.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
