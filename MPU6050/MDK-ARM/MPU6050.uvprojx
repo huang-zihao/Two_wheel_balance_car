@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xB</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;                   ../Drivers/STM32F1xx_HAL_Driver/Inc;                   ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;                   ../Drivers/CMSIS/Device/ST/STM32F1xx/Include;                   ../Drivers/CMSIS/Include;                   ..\Hardware\MPU6050;                   ..\Hardware\MPU6050\eMPL</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;..\Hardware\MPU6050;..\Hardware\MPU6050\eMPL;..\Hardware</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -394,6 +394,11 @@
               <FileName>PID.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\PID.c</FilePath>
+            </File>
+            <File>
+              <FileName>Motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\Motor.c</FilePath>
             </File>
             <File>
               <FileName>main.c</FileName>
@@ -529,11 +534,6 @@
               <FileName>stm32f1xx_hal_msp.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32f1xx_hal_msp.c</FilePath>
-            </File>
-            <File>
-              <FileName>Motor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\Motor.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -694,6 +694,11 @@
               <FileName>inv_mpu_dmp_motion_driver.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\MPU6050\eMPL\inv_mpu_dmp_motion_driver.c</FilePath>
+            </File>
+            <File>
+              <FileName>oled.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\oled.c</FilePath>
             </File>
           </Files>
         </Group>

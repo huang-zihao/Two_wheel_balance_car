@@ -41,3 +41,4 @@ mpu6050\main.o: ../Core/Inc/usart.h
 mpu6050\main.o: ../Core/Inc/gpio.h
 mpu6050\main.o: ../Core/Inc/PID.h
 mpu6050\main.o: ../Core/Inc/Motor.h
+mpu6050\main.o: ..\Hardware\oled.h
