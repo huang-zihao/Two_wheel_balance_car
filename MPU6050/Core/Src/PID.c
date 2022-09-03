@@ -5,9 +5,9 @@
 datatype Upright(datatype Med,datatype theta,datatype gro)
 {
 
-		static float Upright_Kp=90,Upright_Kd=16;//36,24
+		static float Upright_Kp=20,Upright_Kd=24;//36,24
 		static datatype Upright_out=0;
-    Upright_out = Upright_Kp*(theta-Med)+Upright_Kd*(gro);
+    Upright_out = Upright_Kp*(theta+Med)+Upright_Kd*(gro);
 	
 		if(Upright_out>1000) Upright_out=1000;
 		if(Upright_out<-1000) Upright_out=-1000;
@@ -19,7 +19,7 @@ datatype Upright(datatype Med,datatype theta,datatype gro)
 datatype velocity(int target,int left_speed,int right_speed)
 {
 	static datatype velocity_out=0;
-	static float velocity_Kp=0.1,velocity_Ki=0.1;
+	static float velocity_Kp=1.8,velocity_Ki=0.1;
 	static int speed,velocity_S,low_out_last,low_out;
 //	
 //	float a=0.7;

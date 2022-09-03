@@ -211,8 +211,8 @@ HAL_TIM_PWM_Start_IT(&htim3,TIM_CHANNEL_1);
 		tmp_theta=(float)gyroy/(0xffff/500);
 
 		pwm_velocity = velocity(0,L_count,R_count);
-		pwm_velocity = (pwm_velocity>=30)?30:pwm_velocity;
-		pwm_velocity = (pwm_velocity<=-30)?-30:pwm_velocity;
+		pwm_velocity = (pwm_velocity>=50)?50:pwm_velocity;
+		pwm_velocity = (pwm_velocity<=-50)?-50:pwm_velocity;
 		
 		pwm_Upright=Upright(pwm_velocity,pitch,tmp_theta);
 //		pwm_Upright = (pwm_Upright>=1000)?1000:pwm_Upright;
@@ -277,7 +277,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		count++;
 		if(count>=500)
 		{
-			printf("pwm_Upright£º %d   pitch£º %.2f   pwm_value: %d\r\n",pwm_Upright,pitch,pwm_value);
+			printf("pwm_Upright£º %d   pwm_velocity£º %.2f   pwm_value: %d\r\n",pwm_Upright,pwm_velocity,pwm_value);
 			count = 0; 
 			L_count = 0;
 			R_count = 0;
